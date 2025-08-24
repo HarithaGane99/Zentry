@@ -24,7 +24,6 @@ const getAllUsers=async (req,res)=>{
 const addUsers = async(req,res)=>{
     
     const {name,gmail,age,address}=req.body;
-    console.log("Incoming body:", req.body); 
 
     let users;
     try{
@@ -43,5 +42,26 @@ const addUsers = async(req,res)=>{
     return res.status(201).json({users});
 }
 
+
+//Get by Id
+const getById=async (req,res)=>{
+    const {id}=req.params;
+    let user;
+    try{
+        user = await User.findById(id);
+    }catch(error){
+        console.error("Error fetching user:", error);
+    }
+
+    //not found
+    if(!user){
+        return res.status(404).json({message:"No user found"});    
+    }
+
+    //Display user
+    return res.status(200).json({user});
+}
+
 exports.getAllUsers=getAllUsers;
 exports.addUsers=addUsers;
+exports.getById=getById;
