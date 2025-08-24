@@ -1,16 +1,14 @@
 const express=require('express');
 const mongoose= require('mongoose');
 require('dotenv').config();
+const router = require("./Routes/UserRoutes");
 const DB_URL = process.env.MONGO_URI;
 const PORT=5000;
 
 const app=express();
 
 //Middleware
-app.use("/",(req,res,next)=>{
-  console.log("Request received");
-  next();
-})
+app.use("/users",router);
 
 mongoose.connect(DB_URL)
   .then(() => {
