@@ -8,7 +8,9 @@ const PORT=5000;
 const app=express();
 
 //Middleware
+app.use(express.json());
 app.use("/users",router);
+
 
 mongoose.connect(DB_URL)
   .then(() => {
@@ -21,4 +23,3 @@ mongoose.connect(DB_URL)
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
-
