@@ -1,17 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
+import axios from 'axios';
+import '../Styles/userDetails.css';
 
-const UserDetails = (props) => {
-  const {  name, gmail, age, address } = props.user;
+const URL = "http://localhost:5000/users";
+
+const fetchHandler = async () => {
+  return await axios.get(URL).then((res) => res.data);
+};
+
+const UserDetails = () => {
+  const [users, setUsers] = useState();
+  useEffect(() => {
+    fetchHandler().then((data) => setUsers(data.users));
+  }, []);
+
   return (
     <>
       <Navbar />
-      <h2>User Details</h2>
-      <div>
-        <h1>Name: {name}</h1>
-        <h1>Email: {gmail}</h1>
-        <h1>Age: {age}</h1>
-        <h1>Address: {address}</h1>
+      <div className="table-container">
+        <h2>User Details</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Age</th>
+              <th>Address</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users && users.map((user, i) => (
+              <tr key={i}>
+                <td>{user.name}</td>
+                <td>{user.gmail}</td>
+                <td>{user.age}</td>
+                <td>{user.address}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </>
   );
