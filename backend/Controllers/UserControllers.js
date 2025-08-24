@@ -62,6 +62,34 @@ const getById=async (req,res)=>{
     return res.status(200).json({user});
 }
 
+//update user
+const updateUser=async (req,res)=>{
+    const {id}=req.params;
+    const {name,gmail,age,address}=req.body;
+
+    let user;
+    try{
+        user = await User.findByIdAndUpdate(id,{
+            name,
+            gmail,
+            age,
+            address
+        },{new:true});
+    }catch(error){
+        console.error("Error updating user:", error);
+        return res.status(500).json({message:"Internal server error"});
+    }
+
+    //not found
+    if(!user){
+        return res.status(404).json({message:"No user found"});    
+    }
+
+    //Display user
+    return res.status(200).json({user});
+}
+
 exports.getAllUsers=getAllUsers;
 exports.addUsers=addUsers;
 exports.getById=getById;
+exports.updateUser=updateUser;
