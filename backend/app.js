@@ -6,8 +6,10 @@ const DB_URL = process.env.MONGO_URI;
 const PORT=5000;
 
 const app=express();
+const cors = require('cors');
 
 //Middleware
+app.use(cors());
 app.use(express.json());
 app.use("/users",router);
 
