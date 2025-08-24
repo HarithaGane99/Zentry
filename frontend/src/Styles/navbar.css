@@ -1,0 +1,101 @@
+/* navbar.css */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  max-width: 100%;
+  background: linear-gradient(135deg, #1e293b, #0f172a); /* dark modern gradient */
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 2rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+  backdrop-filter: blur(10px); /* glass effect */
+  z-index: 1000;
+  transition: background 0.3s ease;
+}
+
+.navbar h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #3b82f6, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.navbar h2:hover {
+  transform: scale(1.05);
+}
+
+.home-ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.home-ul li a {
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #e2e8f0; /* slate gray */
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* Hover animation - glowing underline */
+.home-ul li a::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg, #3b82f6, #06b6d4);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.home-ul li a:hover::after {
+  width: 100%;
+}
+
+.home-ul li a:hover {
+  color: #3b82f6; /* bright blue hover */
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Responsive Navbar */
+@media (max-width: 768px) {
+  .home-ul {
+    gap: 1rem;
+  }
+
+  .navbar {
+    padding: 0.8rem 1rem;
+  }
+
+  .navbar h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .home-ul {
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    background: rgba(15, 23, 42, 0.95);
+    padding: 1rem;
+    border-radius: 12px;
+    display: none; /* later toggle with a hamburger */
+  }
+}
