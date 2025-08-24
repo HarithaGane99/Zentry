@@ -89,7 +89,28 @@ const updateUser=async (req,res)=>{
     return res.status(200).json({user});
 }
 
+//Delete User
+const deleteUser=async (req,res)=>{
+    const {id}=req.params;
+    let user;
+    try{
+        user = await User.findByIdAndDelete(id);
+    }catch(error){
+        console.error("Error deleting user:", error);
+        return res.status(500).json({message:"Internal server error"});
+    }
+
+    //not found
+    if(!user){
+        return res.status(404).json({message:"No user found"});    
+    }
+
+    //Display user
+    return res.status(200).json({user});
+}
+
 exports.getAllUsers=getAllUsers;
 exports.addUsers=addUsers;
 exports.getById=getById;
 exports.updateUser=updateUser;
+exports.deleteUser=deleteUser;
