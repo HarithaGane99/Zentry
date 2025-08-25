@@ -1,0 +1,58 @@
+/* App.css */
+body, html, #root {
+  height: 100%;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.app-background {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #7790ca, #acbacf, #263b5a);
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+}
+
+/* No Results Found Message */
+.no-results {
+  text-align: center;
+  margin: 2rem auto;
+  padding: 1rem 2rem;
+  max-width: 400px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  background: rgba(15, 23, 42, 0.85);
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  backdrop-filter: blur(10px);
+  animation: fadeIn 0.5s ease-in-out;
+
+  /* Gradient Text */
+  background-image: linear-gradient(90deg, #3b82f6, #06b6d4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.5px;
+}
+
+/* Add a glowing effect to make it more eye-catching */
+.no-results::after {
+  content: "⚠️";
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 1.5rem;
+  animation: pulseGlow 1.5s infinite;
+}
+
+/* Glow Animation */
+@keyframes pulseGlow {
+  0%, 100% {
+    text-shadow: 0 0 6px rgba(59, 130, 246, 0.6),
+                 0 0 12px rgba(6, 182, 212, 0.6);
+  }
+  50% {
+    text-shadow: 0 0 12px rgba(59, 130, 246, 0.9),
+                 0 0 20px rgba(6, 182, 212, 0.9);
+  }
+}
