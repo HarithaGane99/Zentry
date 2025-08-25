@@ -1,7 +1,7 @@
 /* userDetails.css */
 
 .table-container {
-  max-width: 900px;
+  max-width: 2500px;
   margin: 3rem auto;
   padding: 2rem;
   background: rgba(15, 23, 42, 0.9);
@@ -57,7 +57,9 @@
 }
 
 .table-container td {
+  color: #e2e8f0;  /* Light gray (works well on dark bg) */
   border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+  font-size: 0.95rem;
 }
 
 /* Animations */
@@ -184,4 +186,41 @@
 
 .search-container button:active {
   transform: scale(0.95);
+}
+
+
+/* WhatsApp Button */
+.whatsapp-btn {
+  display: block;
+  margin: 2rem auto;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(135deg, #25d366, #47d03d, #28c758);
+  box-shadow: 0 4px 14px rgba(78, 246, 140, 0.4);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+/* Hover Effect */
+.whatsapp-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+  filter: brightness(1.1);
+}
+
+/* Active Click Effect */
+.whatsapp-btn:active {
+  transform: scale(0.95);
+}
+
+/* Optional: Add WhatsApp Icon Before Text */
+.whatsapp-btn::before {
+  content: "💬";
+  margin-right: 8px;
+  font-size: 1.2rem;
 }

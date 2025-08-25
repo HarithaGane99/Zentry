@@ -53,6 +53,21 @@ const UserDetails = () => {
     setNoResults(filteredUsers.length === 0);
   };
 
+
+  const handleSendReport = () => {
+    //Create the Whatsapp Chat URL
+    const phoneNumber = "+94779626854";
+    const message = "Hello, I would like to report a user.";
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+      message
+    )}`;
+    //open the watsappp chat in new window
+    window.open(whatsappURL, "_blank");
+  };
+
+
+
+
   return (
     <>
       <Navbar />
@@ -87,7 +102,7 @@ const UserDetails = () => {
               {users.map((user) => (
                 <tr key={user._id}>
                   <td>{user.name}</td>
-                  <td>{user.email}</td> {/* Changed from gmail → email */}
+                  <td>{user.gmail}</td> 
                   <td>{user.age}</td>
                   <td>{user.address}</td>
                   <td className="no-print">
@@ -106,7 +121,12 @@ const UserDetails = () => {
             </tbody>
           </table>
         </div>
+        
+
       )}
+      <button className="whatsapp-btn" onClick={handleSendReport}>
+            Send Whatsapp Message
+      </button>
     </>
   );
 };

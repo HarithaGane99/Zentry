@@ -7,7 +7,7 @@ body, html, #root {
 
 .app-background {
   min-height: 100vh;
-  background: linear-gradient(135deg, #7790ca, #acbacf, #263b5a);
+  background: linear-gradient(135deg, #17233d, #16263d, #263b5a);
   background-attachment: fixed;
   display: flex;
   flex-direction: column;
