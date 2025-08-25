@@ -64,3 +64,59 @@
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+
+/* Action Buttons Wrapper */
+.action-buttons {
+  display: flex;
+  gap: 0.8rem;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Base Button Styles */
+.update-btn,
+.delete-btn {
+  flex: 1;
+  min-width: 100px;
+  text-align: center;
+  padding: 0.6rem 0;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  color: #fff;
+}
+
+/* Update Button - Futuristic Blue-Cyan */
+.update-btn {
+  background: linear-gradient(135deg, #2563eb, #06b6d4, #033a52);
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+}
+
+.update-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(56, 189, 248, 0.6);
+  filter: brightness(1.1);
+}
+
+/* Delete Button - Premium Crimson */
+.delete-btn {
+  background: linear-gradient(135deg, #9e0505, #dc2626, #cb8181);
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.4);
+}
+
+.delete-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(185, 28, 28, 0.6);
+  filter: brightness(1.1);
+}
+
+/* Active Press Effect */
+.update-btn:active,
+.delete-btn:active {
+  transform: scale(0.95);
+}
