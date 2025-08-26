@@ -12,7 +12,7 @@ const getAllUsers=async (req,res)=>{
 
     //not found
     if(!users){
-        return res.status(404).json({message:"No users found"});    
+        return res.status(404).json({message:"No users found"});
     }
 
     //Display users
@@ -22,8 +22,8 @@ const getAllUsers=async (req,res)=>{
 
 //data Insert
 const addUsers = async(req,res)=>{
-    
-    const {name,gmail,age,address}=req.body;
+
+    const {name,gmail,age,address,phone,password}=req.body;
 
     let users;
     try{
@@ -31,7 +31,9 @@ const addUsers = async(req,res)=>{
             name,
             gmail,
             age,
-            address
+            address,
+            phone,
+            password,
         });
         await users.save();
     }catch(error){
@@ -55,7 +57,7 @@ const getById=async (req,res)=>{
 
     //not found
     if(!user){
-        return res.status(404).json({message:"No user found"});    
+        return res.status(404).json({message:"No user found"});
     }
 
     //Display user
@@ -84,7 +86,7 @@ const updateUser=async (req,res)=>{
 
     //not found
     if(!user){
-        return res.status(404).json({message:"No user found"});    
+        return res.status(404).json({message:"No user found"});
     }
 
     //Display user
@@ -104,7 +106,7 @@ const deleteUser=async (req,res)=>{
 
     //not found
     if(!user){
-        return res.status(404).json({message:"No user found"});    
+        return res.status(404).json({message:"No user found"});
     }
 
     //Display user
