@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import axios from "axios";
-import "../Styles/userDetails.css";
+import "../Styles/adminDashboard.css";
 import { Link } from "react-router-dom";
 
 const URL = "http://localhost:5000/users";
@@ -17,7 +17,7 @@ const fetchHandler = async () => {
   }
 };
 
-const UserDetails = () => {
+const AdminDashboard = () => {
   const [users, setUsers] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [noResults, setNoResults] = useState(false);
@@ -70,7 +70,6 @@ const UserDetails = () => {
 
   return (
     <>
-      <Navbar />
       <div className="search-container">
         <input
           value={searchQuery}
@@ -133,5 +132,5 @@ const UserDetails = () => {
   );
 };
 
-export default UserDetails;
+export default AdminDashboard;
 

@@ -24,7 +24,7 @@ const AddUser = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    sendRequest().then(() => navigate('/userdetails'));
+    sendRequest().then(() => navigate('/admin-dashboard'));
   };
 
   const sendRequest = async () => {

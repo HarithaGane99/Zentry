@@ -11,6 +11,8 @@ router.post("/login", UserController.loginUser);
 
 // Protected User Route
 router.get('/profile', protect, UserController.getMyProfile);
+router.put('/profile', protect, UserController.updateMyProfile);
+
 
 // Protected Admin Routes
 router.post("/", protect, isAdmin, UserController.addUsers); // Admin creates user

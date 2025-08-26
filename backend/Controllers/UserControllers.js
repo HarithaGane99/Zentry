@@ -183,6 +183,35 @@ const getMyProfile = async(req, res) => {
     }
 };
 
+const updateMyProfile = async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id);
+
+        if (user) {
+            user.name = req.body.name || user.name;
+            user.gmail = req.body.gmail || user.gmail;
+            user.age = req.body.age || user.age;
+            user.address = req.body.address || user.address;
+            user.phone = req.body.phone || user.phone;
+
+            const updatedUser = await user.save();
+            
+            res.json({
+                _id: updatedUser._id,
+                name: updatedUser.name,
+                gmail: updatedUser.gmail,
+                role: updatedUser.role,
+                // We don't need to send a new token unless the role changes
+            });
+
+        } else {
+            res.status(404).json({ message: 'User not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: 'Server Error' });
+    }
+};
+
 exports.registerUser = registerUser;
 exports.loginUser = loginUser;
 exports.addUsers = addUsers;
@@ -191,3 +220,4 @@ exports.getById = getById;
 exports.updateUser = updateUser;
 exports.deleteUser = deleteUser;
 exports.getMyProfile = getMyProfile;
+exports.updateMyProfile = updateMyProfile;

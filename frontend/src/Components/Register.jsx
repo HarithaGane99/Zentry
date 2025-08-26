@@ -1,12 +1,13 @@
-/* eslint-disable no-unused-vars */
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
 import "../Styles/register.css";
 import { useNavigate } from "react-router-dom";
-
+import { AuthContext } from '../context/AuthContext'; // Import AuthContext
 
 function Register() {
   const navigate = useNavigate();
+  const { login } = useContext(AuthContext); // We'll use this to log the user in
+  
   const [inputs, setInputs] = useState({
     name: "",
     gmail: "",
@@ -38,13 +39,14 @@ function Register() {
     }
 
     if (isValid) {
-      await sendRequest().then(() => navigate('/userdetails'));
+      await sendRequest();
     }
   };
 
   const sendRequest = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/users", {
+      // 1. Send registration data to the new public endpoint
+      const response = await axios.post("http://localhost:5000/users/register", {
         name: String(inputs.name),
         gmail: String(inputs.gmail),
         password: String(inputs.password),
@@ -53,21 +55,44 @@ function Register() {
         age: Number(inputs.age)
       });
 
-      if (response.status === 201) {
-        window.alert("Register successfully!");
+      // 2. If registration is successful, use the response to log the user in
+      if (response.data && response.data.token) {
+        window.alert("Registered successfully!");
+
+        // 3. Manually update localStorage and AuthContext state
+        localStorage.setItem('user', JSON.stringify(response.data));
+        
+        // This is a trick to make the AuthContext re-read from localStorage
+        // A more advanced solution might have a dedicated 'setUser' in context
+        window.dispatchEvent(new Event('storage')); 
+        
+        navigate('/profile'); // Redirect to the user's new profile page
       }
     } catch (error) {
-      if (
-        error.response &&
-        error.response.data &&
-        error.response.data.message
-      ) {
-        window.alert(error.response.data.message);
-      } else {
-        window.alert("An error occurred while creating the account.");
-      }
+      const errorMessage = error.response?.data?.message || "An error occurred while creating the account.";
+      window.alert(errorMessage);
     }
   };
+  
+  // A small change to AuthContext is needed to listen for storage events.
+  // In frontend/src/context/AuthContext.jsx, add this useEffect:
+  /*
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const loggedInUser = localStorage.getItem('user');
+      if (loggedInUser) {
+        const foundUser = JSON.parse(loggedInUser);
+        setUser(foundUser);
+      } else {
+        setUser(null);
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, []);
+  */
+
 
   return (
     <div className="register-container">
@@ -96,7 +121,7 @@ function Register() {
         <input
           type="password"
           name="password"
-          placeholder="password"
+          placeholder="Password"
           className="register-input"
           required
           value={inputs.password}
@@ -128,7 +153,7 @@ function Register() {
 
         <textarea
           name="address"
-          placeholder="address"
+          placeholder="Address"
           rows={2}
           className="register-input"
           required
