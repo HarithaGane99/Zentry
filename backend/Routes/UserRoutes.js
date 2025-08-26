@@ -1,21 +1,25 @@
-const express=require('express');
-const router=express.Router();
+const express = require('express');
+const router = express.Router();
 
-//Insert model
-const User=require("../Model/UserModel");
-
-
-//Insert User Controller
+//Import User Controller and Middleware
 const UserController = require("../Controllers/UserControllers");
+const { protect, isAdmin } = require('../middleware/authMiddleware');
 
-router.get("/",UserController.getAllUsers);
-router.post("/",UserController.addUsers);
-router.get("/:id",UserController.getById);
-router.put("/:id",UserController.updateUser);
-router.delete("/:id",UserController.deleteUser);
+// Public Routes
+router.post("/register", UserController.registerUser);
+router.post("/login", UserController.loginUser);
 
-//export
-module.exports=router;
+// Protected User Route
+router.get('/profile', protect, UserController.getMyProfile);
 
+// Protected Admin Routes
+router.post("/", protect, isAdmin, UserController.addUsers); // Admin creates user
+router.get("/", protect, isAdmin, UserController.getAllUsers);
+router.get("/:id", protect, isAdmin, UserController.getById);
+router.put("/:id", protect, isAdmin, UserController.updateUser);
+router.delete("/:id", protect, isAdmin, UserController.deleteUser);
+
+
+module.exports = router;
 
 
