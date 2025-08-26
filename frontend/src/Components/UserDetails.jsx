@@ -95,6 +95,7 @@ const UserDetails = () => {
                 <th>Email</th>
                 <th>Age</th>
                 <th>Address</th>
+                <th>Phone</th>
                 <th className="no-print">Actions</th>
               </tr>
             </thead>
@@ -105,6 +106,7 @@ const UserDetails = () => {
                   <td>{user.gmail}</td> 
                   <td>{user.age}</td>
                   <td>{user.address}</td>
+                  <td>{user.phone}</td>
                   <td className="no-print">
                     <Link to={`/updateuser/${user._id}`}>
                       <button className="update-btn">Update</button>

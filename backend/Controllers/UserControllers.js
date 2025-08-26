@@ -65,7 +65,7 @@ const getById=async (req,res)=>{
 //update user
 const updateUser=async (req,res)=>{
     const {id}=req.params;
-    const {name,gmail,age,address}=req.body;
+    const {name,gmail,age,address,phone, password}=req.body;
 
     let user;
     try{
@@ -73,7 +73,9 @@ const updateUser=async (req,res)=>{
             name,
             gmail,
             age,
-            address
+            address,
+            phone,
+            password
         },{new:true});
     }catch(error){
         console.error("Error updating user:", error);

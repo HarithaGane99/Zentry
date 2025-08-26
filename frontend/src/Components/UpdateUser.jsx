@@ -26,6 +26,8 @@ const UpdateUser = () => {
         gmail: String(inputs.gmail),
         age: Number(inputs.age),
         address: String(inputs.address),
+        phone: String(inputs.phone),
+        password: String(inputs.password)
       })
       .then((res) => res.data);
   };
@@ -78,6 +80,22 @@ const UpdateUser = () => {
             name="address"
             onChange={handleChange}
             value={inputs.address || ''}
+            required
+          />
+          <label>Phone</label>
+          <input
+            type="text"
+            name="phone"
+            onChange={handleChange}
+            value={inputs.phone || ''}
+            required
+          />
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            onChange={handleChange}
+            value={inputs.password || ''}
             required
           />
           <button type="submit">Update User</button>
