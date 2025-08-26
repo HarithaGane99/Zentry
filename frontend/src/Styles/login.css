@@ -1,0 +1,107 @@
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background: linear-gradient(135deg, #17233d, #16263d, #263b5a);
+}
+
+.login-form-container {
+  max-width: 400px;
+  width: 100%;
+  padding: 2.5rem;
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  backdrop-filter: blur(12px);
+  text-align: center;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+.login-title {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, #3b82f6, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 1px;
+}
+
+.login-subtitle {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #94a3b8;
+  margin-bottom: 2rem;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.login-input {
+  padding: 0.8rem 1rem;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #f8fafc;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.login-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.7);
+}
+
+.login-btn {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background: linear-gradient(90deg, #3b82f6, #06b6d4);
+  color: white;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.5);
+}
+
+.login-error {
+  color: #f87171;
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-top: 0;
+  font-size: 0.9rem;
+}
+
+.login-footer {
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  margin-top: 1rem;
+}
+
+.login-link {
+  color: #60a5fa;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
